@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/modal.css">
+    <script src="assets/load.js"></script>
+
+    <style>
+
+        body{
+            background-image: url("https://trek.scene7.com/is/image/TrekBicycleProducts/E417_mq_16x9_2?$responsive-pjpg$&cache=on,on&wid=1920");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Raleway';
+            font-size: 14px;        
+        }
+
+        header{
+            width: 100%;
+            height: 50px;
+            margin: 0 20px;
+            border-bottom: solid 1px #ffffff;
+        }
+
+        nav{
+            display: grid;
+            background: rgb(50, 50, 50,0.5);
+            width : 200px;
+            height: 300px;
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 0; right: 0;
+            margin: auto ;
+            border-radius: 20px;
+            padding: 30px;
+        }
+        footer, .logo{
+            margin: 0 auto;
+            color: aliceblue;
+        }
+        img{
+            width: 100%;
+        }
+
+        footer > *{
+            text-align: center;
+        }
+
+        button, input{
+            width: 100%;
+            margin: 0 auto;
+            padding: 5px;    
+            box-sizing: border-box;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        #btn_novo{
+            cursor: pointer;
+            box-sizing: border-box;
+            padding: 5px 18px;
+            border: solid 1px rgba(0, 0, 0, 0);
+        }
+
+        #btn_novo:hover{
+            border: solid 1px #ffffff;
+        }
+
+        .top-menu{
+            display: flex;
+            justify-content: space-around;
+        }
+
+        li{
+            list-style-type: none;
+            font-size: larger;
+        }
+
+        li:hover{
+            cursor: pointer;
+            color: rgb(220, 20, 60);
+            border-bottom: solid 2px rgb(220, 20, 60);
+            
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+
+        <ul class="top-menu">
+            <li>OpenStrava</li>
+            <li>Who We Are?</li>
+            <li>What We Want?</li>
+            <li id="mod_login">Login</li>
+            
+        </ul>
+
+    </header>
+<!--
+    <nav>
+        <div class="logo">
+            <h1>Open Strava</h1>             
+        </div>
+        <div class="form">       
+            <input type="text" name="edtUser" id="edtUser" placeholder="USER">         
+            <input type="password" name="edtPass" id="edtPass" placeholder="PASSWORD">
+            <button id="btnLogin">Login</button>
+        </div>
+        <footer>
+            <p>OpenStrava<span>&#174;</span> - 2022</p>
+            <p id="btn_novo">New User</p>
+        </footer>
+    </nav>    
+-->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">
+                <p class="text-title"></p>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-text"></div>
+            <input type="hidden" class="modal-data">
+        </div>
+    
+    </div> 
+
+</body>
+
+<!-- <script src="assets/login.js"></script> -->
+
+<script>
+
+/*
+    document.getElementById('btn_novo').addEventListener('click',()=>{
+//        document.querySelector('.modal').style.display = 'block'
+
+
+    loadHTML('teste.html','pop-up', 'Label Hello World')
+
+
+    })
+*/
+
+    document.getElementById('mod_login').addEventListener('click',()=>{
+        loadHTML('login.html','pop-up', 'Login')
+    })
+
+    document.querySelector('.close').addEventListener('click',()=>{
+        document.querySelector('.modal').style.display = 'none'
+    })
+
+ 
+
+</script>
+</html>
