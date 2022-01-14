@@ -22,6 +22,7 @@
     display: flex;
     font-weight: 600;
     background-color: #fafcf8;
+    border-radius: 12px 12px 0 0 ;
     color: #000;
     padding: 0 10px;
     align-items: center;
@@ -35,6 +36,8 @@
       padding: 10px;
       width: 100%;
       background-color: #e7e4e4;
+      border-radius: 0 0 12px 12px;
+
     }
 
   .close {
@@ -53,13 +56,13 @@
   .close > *{
     display: flex;
     margin: auto;
-    border: solid 1px #888;
+    border: solid 1px rgb(136, 136, 136);
 
   }
 
   .close:hover,
   .close:focus {
-    color: #000;
+    color: rgb(143, 238, 20);
     text-decoration: none;
     cursor: pointer;
   }

@@ -98,17 +98,19 @@
             <li>Who We Are?</li>
             <li>What We Want?</li>
             <li id="mod_login">Login</li>
+            <li id="mod_newuser">New User</li>
             
         </ul>
 
     </header>
+
 <!--
     <nav>
         <div class="logo">
-            <h1>Open Strava</h1>             
+            <h1>Open Strava</h1>
         </div>
-        <div class="form">       
-            <input type="text" name="edtUser" id="edtUser" placeholder="USER">         
+        <div class="form">
+            <input type="text" name="edtUser" id="edtUser" placeholder="USER">
             <input type="password" name="edtPass" id="edtPass" placeholder="PASSWORD">
             <button id="btnLogin">Login</button>
         </div>
@@ -116,8 +118,9 @@
             <p>OpenStrava<span>&#174;</span> - 2022</p>
             <p id="btn_novo">New User</p>
         </footer>
-    </nav>    
+    </nav>
 -->
+
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -140,17 +143,18 @@
 /*
     document.getElementById('btn_novo').addEventListener('click',()=>{
 //        document.querySelector('.modal').style.display = 'block'
-
-
-    loadHTML('teste.html','pop-up', 'Label Hello World')
-
-
+        loadHTML('teste.html','pop-up', 'Label Hello World')
     })
 */
 
     document.getElementById('mod_login').addEventListener('click',()=>{
         loadHTML('login.html','pop-up', 'Login')
     })
+
+    document.getElementById('mod_newuser').addEventListener('click',()=>{
+        loadHTML('newuser.html','pop-up', 'Register New User')
+    })
+
 
     document.querySelector('.close').addEventListener('click',()=>{
         document.querySelector('.modal').style.display = 'none'

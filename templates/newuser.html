@@ -2,26 +2,49 @@
     <style>
 
         .input{
-
             border: none;
             background-color: rgba(0,0, 0, 0);
             border-bottom: solid 2px #aca9a9;
-
         }
 
 
         input:focus{
             border-bottom: solid 2px #eb9c9c;
             color: #eb9c9c;
+        }
 
+
+        .grpSex{
+            display: flex;     
+        }
+
+        label{
+            text-align: right;
         }
 
 
     </style>
 
-    <input class="input" type="text" id="edtEmail" placeholder="Email">
+    <input class="input" type="email" id="edtEmail" placeholder="Email">
     <input class="input" type="password" id="edtPass" placeholder="Password">
+    <input class="input" type="password" id="edtRePass" placeholder="Repeat Password">
+
+    <p>Please choose your sex category:</p>
+    <div class="grpSex">
+        <div>
+            <input type="radio" id="grpMale" name="sex" value="male" checked>
+            <label for="male">Male</label>    
+        </div>
+        <div>
+            <input type="radio" id="grpFemale" name="sex" value="female">
+            <label for="female">Female</label>    
+        </div>
+        
+    </div>
+
+
     <button id="btnLogin">login</button>
+
 
 
 </template>
