@@ -16,6 +16,7 @@
 
         .grpSex{
             display: flex;     
+            justify-content: center;
         }
 
         label{
@@ -25,36 +26,82 @@
 
     </style>
 
-    <input class="input" type="email" id="edtEmail" placeholder="Email">
-    <input class="input" type="password" id="edtPass" placeholder="Password">
-    <input class="input" type="password" id="edtRePass" placeholder="Repeat Password">
-
-    <p>Please choose your sex category:</p>
-    <div class="grpSex">
-        <div>
-            <input type="radio" id="grpMale" name="sex" value="male" checked>
-            <label for="male">Male</label>    
+    <form action="#" id="frmNewUser">
+        <input class="input" type="text" id="edtName" placeholder="Name" required>
+        <input class="input" type="email" id="edtEmail" placeholder="Email" required>
+        <input class="input pass" type="password" id="edtPass" placeholder="Password" required>
+        <input class="input pass" type="password" id="edtRePass" placeholder="Repeat Password" required>
+    
+        <p>Please choose your category:</p>
+        <div class="grpSex">
+            <div>
+                <input type="radio" id="grpMale" name="sex" value="male" checked>
+                <label for="male">Male</label>    
+            </div>
+            <div>
+                <input type="radio" id="grpFemale" name="sex" value="female">
+                <label for="female">Female</label>    
+            </div>
+            
         </div>
-        <div>
-            <input type="radio" id="grpFemale" name="sex" value="female">
-            <label for="female">Female</label>    
-        </div>
-        
-    </div>
-
-
-    <button id="btnLogin">login</button>
-
-
+    
+        <button id="btnNewUser">Create User</button>
+    </form>
 
 </template>
 <script>
 
-localStorage.clear();
-document.getElementById('btnLogin').addEventListener('click',()=>{
+    function check(form){
 
-    const mail = document.getElementById('edtEmail').value.trim();
+        let elements = form.elements        
+        for (let i = 0, element; element = elements[i++];) {
+            if(!element.checkValidity()){
+                alert('Please, fill all required fields!')
+                element.focus()
+                return false
+            }
+        }
+    
+        let pass = form.querySelectorAll('.pass')
+        let val = ''
+        if(pass.length > 0){
+            for(let i=0; i< pass.length; i++)
+            if(i == 0){
+                val = pass[i].value
+            }else{
+                if(val != pass[i].value){
+                    alert("Password don't match")
+                    pass[i].focus()
+                    return false
+                }
+            }
+
+        }
+
+        return true;
+    }
+
+
+localStorage.clear();
+document.getElementById('btnNewUser').addEventListener('click',(event)=>{
+
+
+    if(check(document.getElementById('frmNewUser')) ){
+        event.preventDefault();
+
+        console.log('ok')
+    }
+
+/*    
+
+    alert(1)
+
+    const name = document.getElementById('edtName').value.trim();
+    const mail = document.getElementById('edtMail').value.trim();
     const pass = document.getElementById('edtPass').value.trim();
+    const repass = document.getElementById('edtRePass').value.trim();
+
+console.log(repass)
 
     const params = new Object;
         params.user = mail;
@@ -103,7 +150,7 @@ document.getElementById('btnLogin').addEventListener('click',()=>{
         }        
 
     });
-
+*/
 });  
 
 </script>
