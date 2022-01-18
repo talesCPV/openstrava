@@ -28,18 +28,18 @@
 
     <form action="#" id="frmNewUser">
         <input class="input" type="text" id="edtName" placeholder="Name" required>
-        <input class="input" type="email" id="edtEmail" placeholder="Email" required>
+        <input class="input" type="email" id="edtMail" placeholder="Email" required>
         <input class="input pass" type="password" id="edtPass" placeholder="Password" required>
         <input class="input pass" type="password" id="edtRePass" placeholder="Repeat Password" required>
     
         <p>Please choose your category:</p>
         <div class="grpSex">
             <div>
-                <input type="radio" id="grpMale" name="sex" value="male" checked>
+                <input type="radio" id="grpMale" name="grpSex" value="M" checked>
                 <label for="male">Male</label>    
             </div>
             <div>
-                <input type="radio" id="grpFemale" name="sex" value="female">
+                <input type="radio" id="grpFemale" name="grpSex" value="F">
                 <label for="female">Female</label>    
             </div>
             
@@ -82,75 +82,78 @@
     }
 
 
-localStorage.clear();
-document.getElementById('btnNewUser').addEventListener('click',(event)=>{
+    localStorage.clear();
+    document.getElementById('btnNewUser').addEventListener('click',(event)=>{
 
 
-    if(check(document.getElementById('frmNewUser')) ){
-        event.preventDefault();
+        if(check(document.getElementById('frmNewUser')) ){
+            event.preventDefault();
 
-        console.log('ok')
-    }
 
-/*    
+            const name = document.getElementById('edtName').value.trim();
+            const mail = document.getElementById('edtMail').value.trim();
+            const pass = document.getElementById('edtPass').value.trim();
+            const sex = document.getElementById('grpMale').value;
 
-    alert(1)
+            console.log(sex)
 
-    const name = document.getElementById('edtName').value.trim();
-    const mail = document.getElementById('edtMail').value.trim();
-    const pass = document.getElementById('edtPass').value.trim();
-    const repass = document.getElementById('edtRePass').value.trim();
+            const params = new Object;
+                params.name = name;
+                params.mail = mail;
+                params.pass = pass;
 
-console.log(repass)
+            const data = new URLSearchParams();        
+                data.append("cod", 1);
+                data.append("token", '');
+                data.append("params", JSON.stringify(params));
 
-    const params = new Object;
-        params.user = mail;
-        params.pass = pass;
+            const myRequest = new Request("db/query_db.php",{
+                method : "POST",
+                body : data
+            });
 
-    const data = new URLSearchParams();        
-    data.append("cod", 0);
-    data.append("token", '');
-    data.append("params", JSON.stringify(params));
+            const myPromisse = new Promise((resolve,reject) =>{
+                            
+                fetch(myRequest)
+                .then(function (response){
 
-    const myRequest = new Request("db/query_db.php",{
-        method : "POST",
-        body : data
-    });
+                    if (response.status === 200) { 
+                        resolve(response.text());
+                    } else { 
+                        reject(new Error("Houve algum erro na comunicação com o servidor"));
+                    } 
 
-    const myPromisse = new Promise((resolve,reject) =>{
+                });            
 
-        fetch(myRequest)
-        .then(function (response){
+            });
 
-            if (response.status === 200) { 
-                resolve(response.text());
-            } else { 
-                reject(new Error("Houve algum erro na comunicação com o servidor"));
-            } 
+            myPromisse.then((resolve)=>{
+        //            console.log(resolve);
+                if(resolve.trim() != ""){
+                    const json = JSON.parse(resolve);
+        //                console.log(json);
+                    localStorage.setItem("id",json[0].id);
+                    localStorage.setItem("user",json[0].user);
+                    localStorage.setItem("nome",json[0].nome);
+                    localStorage.setItem("class",json[0].class);
+                    localStorage.setItem("token",json[0].token);
+                    localStorage.setItem("email",json[0].email);
+                    window.open("main.html","_self")
+                }else{
+                    alert("Usuário ou senha inválido!");
+                    localStorage.clear();
+                }        
 
-        });            
+            });
 
-    });
 
-    myPromisse.then((resolve)=>{
-//            console.log(resolve);
-        if(resolve.trim() != ""){
-            const json = JSON.parse(resolve);
-//                console.log(json);
-            localStorage.setItem("id",json[0].id);
-            localStorage.setItem("user",json[0].user);
-            localStorage.setItem("nome",json[0].nome);
-            localStorage.setItem("class",json[0].class);
-            localStorage.setItem("token",json[0].token);
-            localStorage.setItem("email",json[0].email);
-            window.open("main.html","_self")
-        }else{
-            alert("Usuário ou senha inválido!");
-            localStorage.clear();
-        }        
+        }
 
-    });
-*/
-});  
+    
+
+
+
+
+    });  
 
 </script>
