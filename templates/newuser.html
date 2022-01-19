@@ -93,14 +93,16 @@
             const name = document.getElementById('edtName').value.trim();
             const mail = document.getElementById('edtMail').value.trim();
             const pass = document.getElementById('edtPass').value.trim();
-            const sex = document.getElementById('grpMale').value;
+            const sex = document.querySelector('input[name="grpSex"]:checked').value;
 
             console.log(sex)
 
             const params = new Object;
                 params.name = name;
+                params.user = mail;
                 params.mail = mail;
                 params.pass = pass;
+                params.sex = sex;
 
             const data = new URLSearchParams();        
                 data.append("cod", 1);
@@ -128,21 +130,8 @@
             });
 
             myPromisse.then((resolve)=>{
-        //            console.log(resolve);
-                if(resolve.trim() != ""){
-                    const json = JSON.parse(resolve);
-        //                console.log(json);
-                    localStorage.setItem("id",json[0].id);
-                    localStorage.setItem("user",json[0].user);
-                    localStorage.setItem("nome",json[0].nome);
-                    localStorage.setItem("class",json[0].class);
-                    localStorage.setItem("token",json[0].token);
-                    localStorage.setItem("email",json[0].email);
-                    window.open("main.html","_self")
-                }else{
-                    alert("Usuário ou senha inválido!");
-                    localStorage.clear();
-                }        
+                    console.log(resolve);
+      
 
             });
 
