@@ -45,8 +45,35 @@
         <button id="btnNewUser">Create User</button>
     </form>
 
+    <button id="btnSend">teste de email</button>
+
+
 </template>
 <script>
+
+    document.getElementById('btnSend').addEventListener('click',()=>{
+
+        sendmail('Tales','tales@flexibus.com.br');
+
+
+    });
+
+
+    function sendmail(name, email){
+        const data = new URLSearchParams();        
+            data.append("name", name);
+            data.append("email", email);
+            data.append("subject", 'OpenStrava - Confirm New User');
+            data.append("message", 'teste 123');
+
+        const myRequest = new Request("mail/sendMail.php",{
+            method : "POST",
+            body : data
+        });        
+
+        fetch(myRequest);
+    }
+
 
     function check(form){
 
@@ -74,12 +101,11 @@
             }
 
         }
-
         return true;
+
     }
 
     document.getElementById('btnNewUser').addEventListener('click',(event)=>{
-
 
         if(check(document.getElementById('frmNewUser')) ){
             event.preventDefault();
@@ -98,7 +124,7 @@
                 params.pass = pass;
                 params.sex = sex;
 
-            const data = new URLSearchParams();        
+            const data = new URLSearchParams();
                 data.append("cod", 1);
                 data.append("token", '');
                 data.append("params", JSON.stringify(params));
@@ -112,35 +138,28 @@
                             
                 fetch(myRequest)
                 .then(function (response){
-
-                    if (response.status === 200) { 
+                    if (response.status === 200) {
                         resolve(response.text());
-                    } else { 
+                    } else {
                         reject(new Error("Houve algum erro na comunicação com o servidor"));
-                    } 
+                    }
 
-                });            
+                });
 
             });
 
             myPromisse.then((resolve)=>{
-
                 if(resolve == 1){
+                    sendmail(name.trim(),mail.trim())
                     alert('Success!!! Please, check your email to aprove...')
                     document.querySelector('.modal').style.display = 'none';
                 }else{
                     alert('Email alread in use, please choose other one.')
                 }
-                    console.log(resolve);      
+
             });
 
-
         }
-
-    
-
-
-
 
     });  
 
