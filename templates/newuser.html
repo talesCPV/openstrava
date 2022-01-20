@@ -7,12 +7,10 @@
             border-bottom: solid 2px #aca9a9;
         }
 
-
         input:focus{
             border-bottom: solid 2px #eb9c9c;
             color: #eb9c9c;
         }
-
 
         .grpSex{
             display: flex;     
@@ -22,7 +20,6 @@
         label{
             text-align: right;
         }
-
 
     </style>
 
@@ -81,21 +78,18 @@
         return true;
     }
 
-
-    localStorage.clear();
     document.getElementById('btnNewUser').addEventListener('click',(event)=>{
 
 
         if(check(document.getElementById('frmNewUser')) ){
             event.preventDefault();
 
-
             const name = document.getElementById('edtName').value.trim();
             const mail = document.getElementById('edtMail').value.trim();
             const pass = document.getElementById('edtPass').value.trim();
             const sex = document.querySelector('input[name="grpSex"]:checked').value;
 
-            console.log(sex)
+//            console.log(sex)
 
             const params = new Object;
                 params.name = name;
@@ -130,9 +124,14 @@
             });
 
             myPromisse.then((resolve)=>{
-                    console.log(resolve);
-      
 
+                if(resolve == 1){
+                    alert('Success!!! Please, check your email to aprove...')
+                    document.querySelector('.modal').style.display = 'none';
+                }else{
+                    alert('Email alread in use, please choose other one.')
+                }
+                    console.log(resolve);      
             });
 
 

@@ -1,5 +1,7 @@
 <?php
 
+    error_reporting(E_ALL ^ E_NOTICE);  
+
     $query_db = array(
          "0" => "SELECT * FROM tb_user WHERE y00='x00' AND y01='x01';",
          "1" => "INSERT INTO tb_user (y00, y01, y02, y03, y04) VALUES('x00', 'x01', 'x02','x03','x04'); ",
@@ -61,8 +63,14 @@
 
 //        echo $query;
 
-		$result = mysqli_query($conexao, $query);
-		$qtd_lin = $result->num_rows;
+//        $result =  mysqli_query($conexao, $query);
+
+        $conexao->query($query);
+
+        $affected = $conexao->affected_rows;
+		$qtd_lin = $conexao->num_rows;
+
+//        echo ($affected." - ".$qtd_lin);
 
 		if($qtd_lin > 0){
 			$rows = array();
@@ -72,7 +80,10 @@
 //            array_push($rows,"teste");
 			print json_encode($rows);
 
-		}
+        }else{
+            print($affected);
+
+        }
 
 	    $conexao->close();        
 
