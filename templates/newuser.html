@@ -58,18 +58,24 @@
 
     });
 
-    const bodyMail = `
-
-
-                <h1> teste de email 2</h1>
-
-                <p> Este é um email de confirmação de usuário, por favor clique no link abaixo:</p>
-
-
-    `
 
 
     function sendmail(name, email){
+
+        const bodyMail = `
+
+
+            <h1>Hello ${name}, did you make a new register in OpenStrava?</h1>
+
+            <p>If you, please confirm in button bellow</p>
+
+            <a href="localhost/openstrava"><button>Yes, am I</button></a>
+
+            <h5>If didn't you, relax... just ignore this email</h5>
+
+        `
+
+
         const data = new URLSearchParams();        
             data.append("name", name);
             data.append("email", email);
