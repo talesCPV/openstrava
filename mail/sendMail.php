@@ -8,6 +8,8 @@
 		$mail->SMTPSecure = 'ssl';	// SSL REQUERIDO pelo GMail
 		$mail->Host = 'flexibus.com.br';	// SMTP utilizado
 		$mail->Port = 465;  		// A porta 465 deverá estar aberta em seu servidor
+		$mail->IsHTML(true); 
+		$mail->CharSet = 'UTF-8';
 		$mail->Username = $user;
 		$mail->Password = $pass;
 		$mail->SetFrom($de, $de_nome);
@@ -27,21 +29,28 @@
 
 
 	$name = $_POST["name"];
-	$fromaddr = $_POST["email"];
-	$toaddr = "comercial@flexibus.com.br";
+	$toaddr = $_POST["email"];
 	$subject = $_POST["subject"];
 	$message = $_POST["message"];
 
-	$host = "ns610.hostgator.com.br"; 
-	$usuario = 'site@flexibus.com.br';
-	$senha = '@Flex0169';
+//	$host = "ns610.hostgator.com.br"; 
+//	$usuario = 'site@flexibus.com.br';
+//	$senha = '@Flex0169';
+//  $fromaddr = "comercial@flexibus.com.br";
+
+$usuario = 'tales@openstrava.com';
+$senha = 'Xspider0#';
+$fromaddr = $usuario;
+$fromname = "OpenStrava";
+
+
 
 //	$name = "OpenStrava - Confirm New User"];
 
 
 
 //	echo('usuario:'.$usuario.' senha:'.$senha.' para:'.$fromaddr.' de:'.$toaddr. ' nome:'.$name.' assunto:'.$subject.' mss:'.$mensagem);
-	smtpmailer($usuario, $senha, $fromaddr, $toaddr, $name, $subject, $message);
+	smtpmailer($usuario, $senha, $toaddr, $fromaddr, $fromname, $subject, $message);
 
 
 

@@ -2,18 +2,15 @@
     <style>
 
         .input{
-
             border: none;
             background-color: rgba(0,0, 0, 0);
             border-bottom: solid 2px #aca9a9;
-
         }
 
 
         input:focus{
             border-bottom: solid 2px #eb9c9c;
             color: #eb9c9c;
-
         }
 
 
@@ -34,7 +31,7 @@ document.getElementById('btnLogin').addEventListener('click',()=>{
     const pass = document.getElementById('edtPass').value.trim();
 
     const params = new Object;
-        params.user = mail;
+        params.mail = mail;
         params.pass = pass;
 
     const data = new URLSearchParams();        
@@ -64,7 +61,7 @@ document.getElementById('btnLogin').addEventListener('click',()=>{
 
     myPromisse.then((resolve)=>{
 //            console.log(resolve);
-        if(resolve.trim() != ""){
+        if(resolve.trim() != "" && resolve != 0){
             const json = JSON.parse(resolve);
 //                console.log(json);
             localStorage.setItem("id",json[0].id);

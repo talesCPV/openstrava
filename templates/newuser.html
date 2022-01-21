@@ -58,13 +58,23 @@
 
     });
 
+    const bodyMail = `
+
+
+                <h1> teste de email 2</h1>
+
+                <p> Este é um email de confirmação de usuário, por favor clique no link abaixo:</p>
+
+
+    `
+
 
     function sendmail(name, email){
         const data = new URLSearchParams();        
             data.append("name", name);
             data.append("email", email);
             data.append("subject", 'OpenStrava - Confirm New User');
-            data.append("message", 'teste 123');
+            data.append("message", bodyMail);
 
         const myRequest = new Request("mail/sendMail.php",{
             method : "POST",

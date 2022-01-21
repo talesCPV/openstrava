@@ -65,12 +65,12 @@
 
 //        $result =  mysqli_query($conexao, $query);
 
-        $conexao->query($query);
+        $result = $conexao->query($query);
 
+		$qtd_lin = $result->num_rows;
         $affected = $conexao->affected_rows;
-		$qtd_lin = $conexao->num_rows;
 
-//        echo ($affected." - ".$qtd_lin);
+//        echo (" Affected lines:".$affected."<br>Qtd lines:".$qtd_lin."<br>");
 
 		if($qtd_lin > 0){
 			$rows = array();
